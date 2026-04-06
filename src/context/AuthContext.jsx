@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
             theme: "light",
             language: "en",
           },
+          DashBoard,
         ];
   });
 
@@ -96,4 +97,4 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => {
   return useContext(AuthContext);
-};    aayyushsjhkdkd
+};   
