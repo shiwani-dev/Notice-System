@@ -1,7 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useEffect, useState } from "react";
 
-import { createContext, useContext, useEffect, useState } from "react";
-
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState(() => {
@@ -36,7 +36,9 @@ export const AuthProvider = ({ children }) => {
   }, [currentUser]);
 
   const signup = (name, email, password) => {
-    const existingUser = users.find((user) => user.email === email);
+    const existingUser = users.find(
+      (user) => user.email.toLowerCase() === email.toLowerCase()
+    );
 
     if (existingUser) {
       return { success: false, message: "User already exists" };
@@ -56,12 +58,14 @@ export const AuthProvider = ({ children }) => {
     setUsers((prevUsers) => [...prevUsers, newUser]);
     setCurrentUser(newUser);
 
-    return { success: true, message: "Signup successful" };
+    return { success: true, message: "Signup successful", user: newUser };
   };
 
   const login = (email, password) => {
     const foundUser = users.find(
-      (user) => user.email === email && user.password === password
+      (user) =>
+        user.email.toLowerCase() === email.toLowerCase() &&
+        user.password === password
     );
 
     if (!foundUser) {
@@ -69,6 +73,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     setCurrentUser(foundUser);
+
     return { success: true, message: "Login successful", user: foundUser };
   };
 
@@ -93,7 +98,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => {
-  return useContext(AuthContext);
-};    aayyushsjhkdkd

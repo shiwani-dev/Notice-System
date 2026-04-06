@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 function Login() {
   const { login } = useAuth();
@@ -36,8 +35,6 @@ function Login() {
     const result = login(email, password);
 
     if (result.success) {
-      setMessage("Login successful");
-
       if (result.user.role === "admin") {
         navigate("/admin-dashboard");
       } else {
@@ -50,18 +47,15 @@ function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-xl shadow-2xl p-10 rounded-2xl w-full max-w-md bg-white">
+      <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-10">
         <form onSubmit={handleSubmit}>
-          <legend className="text-4xl mb-6 text-center">
-            <b>Login</b>
-          </legend>
+          <legend className="text-4xl font-bold text-center mb-6">Login</legend>
 
           {message && (
             <p className="text-sm text-center mb-4 text-red-500">{message}</p>
           )}
 
-          <label>Email:</label>
-          <br />
+          <label className="block mb-2 font-medium">Email</label>
           <input
             className="border rounded-xl p-2 mb-4 w-full"
             type="email"
@@ -70,10 +64,8 @@ function Login() {
             onChange={handleChange}
             placeholder="eg: yourname@gmail.com"
           />
-          <br />
 
-          <label>Password:</label>
-          <br />
+          <label className="block mb-2 font-medium">Password</label>
           <input
             className="border rounded-xl p-2 mb-4 w-full"
             type="password"
@@ -82,23 +74,22 @@ function Login() {
             onChange={handleChange}
             placeholder="Enter your password"
           />
-          <br />
 
           <div className="flex justify-center">
             <button
-              className="p-4 w-30 bg-emerald-500 rounded-xl hover:shadow-2xl hover:bg-emerald-400 text-white"
+              className="px-6 py-3 bg-emerald-500 rounded-xl hover:bg-emerald-400 text-white"
               type="submit"
             >
               Login
             </button>
           </div>
 
-         <p className="text-sm text-center mt-4">
-          Haven&apos;t signed up yet?{" "}
-          <Link to="/signup" className="text-blue-600 hover:underline">
-            Sign up
-          </Link>
-        </p>
+          <p className="text-sm text-center mt-4">
+            Haven&apos;t signed up yet?{" "}
+            <Link to="/signup" className="text-blue-600 hover:underline">
+              Sign up
+            </Link>
+          </p>
         </form>
       </div>
     </div>

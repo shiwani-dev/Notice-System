@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 function Signup() {
   const { signup } = useAuth();
@@ -42,7 +42,6 @@ function Signup() {
     const result = signup(name, email, password);
 
     if (result.success) {
-      setMessage("Signup successful");
       navigate("/user-dashboard");
     } else {
       setMessage(result.message);
@@ -55,7 +54,7 @@ function Signup() {
         onSubmit={handleSubmit}
         className="w-full max-w-md bg-white p-8 rounded-xl shadow-md"
       >
-        <h1 className="text-2xl font-bold text-center mb-6">Sign Up</h1>
+        <h1 className="text-3xl font-bold text-center mb-6">Sign Up</h1>
 
         {message && (
           <p className="mb-4 text-center text-sm text-red-500">{message}</p>
@@ -115,6 +114,13 @@ function Signup() {
         >
           Sign Up
         </button>
+
+        <p className="text-sm text-center mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-600 hover:underline">
+            Login
+          </Link>
+        </p>
       </form>
     </div>
   );
