@@ -6,8 +6,16 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");
 
   const toggle = () => {
-    document.body.classList.toggle("dark-theme");
-    setTheme(theme === "light" ? "dark" : "light");
+    
+    const newTheme = theme === "light" ? "dark" : "light";
+
+    if (newTheme === "dark"){
+      document.body.setAttribute("data-theme", "dark");
+    }
+    else if(newTheme === "light"){
+      document.body.removeAttribute("data-theme");
+    }
+    setTheme(newTheme);
   };
 
   return (

@@ -2,7 +2,7 @@ import React from "react";
 
 function ManageNotices() {
   return (
-    <div>
+    <div className="dark:bg-gray-700">
       <table>
         <tr>
           <th>Notices</th>
