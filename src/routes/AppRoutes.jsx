@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 function AppRoutes() {
   return (
@@ -11,11 +12,20 @@ function AppRoutes() {
 
       <Route
         path="/admin-dashboard"
-        element={<h1 className="p-10 text-3xl font-bold">Admin Dashboard</h1>}
+        element={
+          <ProtectedRoute allowedRole="admin">
+            <h1 className="p-10 text-3xl font-bold">Admin Dashboard</h1>
+          </ProtectedRoute>
+        }
       />
+
       <Route
         path="/user-dashboard"
-        element={<h1 className="p-10 text-3xl font-bold">User Dashboard</h1>}
+        element={
+          <ProtectedRoute allowedRole="user">
+            <h1 className="p-10 text-3xl font-bold">User Dashboard</h1>
+          </ProtectedRoute>
+        }
       />
     </Routes>
   );

@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
             theme: "light",
             language: "en",
           },
-          DashBoard,
         ];
   });
 
