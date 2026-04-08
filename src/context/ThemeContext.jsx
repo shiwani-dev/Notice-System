@@ -1,17 +1,18 @@
 import { createContext, useState } from "react";
 
-export const UserContext = createContext();
+export const ThemeContext = createContext();
 
-export function UserProvider({ children }) {
+export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");
 
   const toggle = () => {
+    document.body.classList.toggle("dark-theme");
     setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <UserContext.Provider value={{ theme, toggle }}>
+    <ThemeContext.Provider value={{ theme, toggle }}>
       {children}
-    </UserContext.Provider>
+    </ThemeContext.Provider>
   );
 }
