@@ -1,7 +1,11 @@
 import AppRoutes from "./routes/AppRoutes";
+import ThemeButton from "./components/Theme";
 
 function App() {
-  return <AppRoutes />;
+  return (<>
+  <ThemeButton/>
+  <AppRoutes />
+  </>);
 }
 
 export default App;

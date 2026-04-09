@@ -46,7 +46,8 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="dark:bg-gray-700 min-h-screen flex items-center justify-center">
+      <Link to="/create-notice">Create Notice</Link>;
       <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-10">
         <form onSubmit={handleSubmit}>
           <legend className="text-4xl font-bold text-center mb-6">Login</legend>

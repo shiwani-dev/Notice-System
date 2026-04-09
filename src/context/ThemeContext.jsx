@@ -1,18 +1,27 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useState } from "react";
 
-export const UserContext = createContext();
+export const ThemeContext = createContext();
 
-export function UserProvider({ children }) {
+export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");
 
   const toggle = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    
+    const newTheme = theme === "light" ? "dark" : "light";
+
+    if (newTheme === "dark"){
+      document.body.setAttribute("data-theme", "dark");
+    }
+    else if(newTheme === "light"){
+      document.body.removeAttribute("data-theme");
+    }
+    setTheme(newTheme);
   };
 
   return (
-    <UserContext.Provider value={{ theme, toggle }}>
+    <ThemeContext.Provider value={{ theme, toggle }}>
       {children}
-    </UserContext.Provider>
+    </ThemeContext.Provider>
   );
 }

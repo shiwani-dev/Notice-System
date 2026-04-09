@@ -1,25 +1,18 @@
 import React from "react";
-import { useContext } from "react";
-import { UserContext } from "../context/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
+import { BsFillMoonStarsFill } from "react-icons/bs";
+import { CgSun } from "react-icons/cg";
 
 function ThemeButton() {
-  const { theme, toggle } = useContext(UserContext);
+  const { theme, toggle } = React.useContext(ThemeContext);
 
   return (
-    <div>
+    <div className="fixed top-4 right-4 z-50">
       <button className="rounded-full border shadow-xl" onClick={toggle}>
         {theme === "light" ? (
-          <img
-            className="rounded-full w-fit h-fit p-2"
-            src="src/assets/icons8-sun-50.png"
-            alt="sun"
-          />
+          <CgSun className="size-16 bg-radial from-yellow-50 to-yellow-400 rounded-full p-2" />
         ) : (
-          <img
-            className="rounded-full w-fit h-fit p-2"
-            src="src/assets/icons8-moon-and-stars-50.png"
-            alt="Moon"
-          />
+          <BsFillMoonStarsFill className="size-16 bg-radial from-pink-50 to-red-400 rounded-full p-2" />
         )}
       </button>
     </div>
