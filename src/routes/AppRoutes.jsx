@@ -5,16 +5,17 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import CreateNotices from "../components/CreateNotices";
 import ManageNotices from "../components/ManageNotices";
 
-function AuthRoutes() {
+function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<DashBoard/>}/>
       <Route path="/create-notice" element={<CreateNotices />} />
       <Route path="/manage-notice" element={<ManageNotices />} />
 
-    </Routes>
+    
 
     <Route
         path="/dashboard"
@@ -25,7 +26,9 @@ function AuthRoutes() {
         }
       />
 
+      </Routes>
+
   );
 }
 
-export default AuthRoutes;
+export default AppRoutes;
