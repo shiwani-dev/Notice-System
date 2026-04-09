@@ -14,9 +14,7 @@ function AuthRoutes() {
       <Route path="/create-notice" element={<CreateNotices />} />
       <Route path="/manage-notice" element={<ManageNotices />} />
 
-    </Routes>
-
-    <Route
+      <Route
         path="/dashboard"
         element={
           <ProtectedRoute allowedRole="admin">
@@ -24,7 +22,7 @@ function AuthRoutes() {
           </ProtectedRoute>
         }
       />
-
+    </Routes>
   );
 }
 
