@@ -1,11 +1,11 @@
-import AppRoutes from "./routes/AppRoutes";
+import NoticesRoutes from "./routes/NoticesRoutes";
 import ThemeButton from "./components/Theme";
 
 function AppNotices() {
   return (
     <div>
       <ThemeButton />
-      <AppRoutes />
+      <NoticesRoutes />
     </div>
   );
 }

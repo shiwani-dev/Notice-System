@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Profile from "../components/Profile"; 
+import Profile from "../components/Profile";
 import CreateNotices from "../components/CreateNotices";
 import Language from "../components/Language";
 import Filter from "../components/Filter";
-import ManageNotices from "../components/ManageNotices";
+import ManageNotices from "./ManageNotices";
 import AboutUs from "../components/AboutUs";
 
 function Dashboard() {
@@ -13,12 +13,10 @@ function Dashboard() {
   const menuItems = ["Home", "Manage Notices", "Settings", "About us"];
 
   return (
-    <div className="flex h-screen bg-gray-100">
-    
+    <div className="dark:bg-gray-700 flex h-screen bg-gray-100">
       <aside className="w-72 bg-gray-900 text-gray-100 flex flex-col">
         <Profile />
 
-      
         <nav className="flex-1 p-4 space-y-2">
           {menuItems.map((item) => (
             <button
@@ -34,11 +32,8 @@ function Dashboard() {
         </nav>
       </aside>
 
-      
       <main className="flex-1 p-8 overflow-y-auto">
-
-
-       {active === "Home" && <Filter/>}
+        {active === "Home" && <Filter />}
         {active === "Manage Notices" && (
           <div className="space-y-6">
             {role === "admin" ? (
