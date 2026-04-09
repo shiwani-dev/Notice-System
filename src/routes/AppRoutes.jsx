@@ -2,7 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../components/ProtectedRoute";
-import DashBoard from "../pages/DashBoard";
+import CreateNotices from "../components/CreateNotices";
+import ManageNotices from "../components/ManageNotices";
 
 function AuthRoutes() {
   return (
@@ -10,9 +11,12 @@ function AuthRoutes() {
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard" element={<DashBoard/>}/>
+      <Route path="/create-notice" element={<CreateNotices />} />
+      <Route path="/manage-notice" element={<ManageNotices />} />
 
-      <Route
+    </Routes>
+
+    <Route
         path="/dashboard"
         element={
           <ProtectedRoute allowedRole="admin">
@@ -21,8 +25,6 @@ function AuthRoutes() {
         }
       />
 
-      
-    </Routes>
   );
 }
 
