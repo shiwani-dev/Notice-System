@@ -4,6 +4,7 @@ import Signup from "../pages/Signup";
 import ProtectedRoute from "../components/ProtectedRoute";
 import CreateNotices from "../components/CreateNotices";
 import ManageNotices from "../components/ManageNotices";
+import DashBoard from "../pages/DashBoard";
 
 function AppRoutes() {
   return (
@@ -11,20 +12,22 @@ function AppRoutes() {
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard" element={<DashBoard/>}/>
       <Route path="/create-notice" element={<CreateNotices />} />
       <Route path="/manage-notice" element={<ManageNotices />} />
 
-    
-
-    <Route
+      <Route
         path="/dashboard"
         element={
-          <ProtectedRoute allowedRole="admin">
-            <h1 className="p-10 text-3xl font-bold">Admin Dashboard</h1>
+          <ProtectedRoute>
+            <DashBoard />
           </ProtectedRoute>
-        }
-      />
+          }
+        />
+
+
+    
+
+    
 
       </Routes>
 

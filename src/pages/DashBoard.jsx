@@ -1,5 +1,10 @@
 import { useState } from "react";
 import Profile from "../components/Profile"; 
+import CreateNotices from "../components/CreateNotices";
+import Language from "../components/Language"
+import Filter from "../components/Filter"
+import ManageNotices from "../components/ManageNotices";
+import AboutUs from "../components/AboutUs";
 
 function Dashboard() {
   const [active, setActive] = useState("Home");
@@ -11,7 +16,7 @@ function Dashboard() {
       <div className="w-48 bg-gray-800 text-white p-4">
         <h2 className="text-lg font-bold mb-6">Sidebar</h2>
         <ul className="space-y-2">
-          {["Home", "Dashboard", "Settings", "Dash"].map((item) => (
+          {["Home", "Manage Notices", "Settings","About us"].map((item) => (
             <li
               key={item}
               className={`p-2 rounded cursor-pointer ${
@@ -27,10 +32,10 @@ function Dashboard() {
 
     
       <div className="flex-1 p-6">
-        {active === "Home" && <h1 className="text-xl font-bold">Welcome Home</h1>}
-        {active === "Dashboard" && <h1 className="text-xl font-bold">Dashboard Content</h1>}
-        {active === "Settings" && <h1 className="text-xl font-bold">Settings Page</h1>}
-        {active === "Dash" && <Profile />}
+        {active === "Home" && <><Filter/> <Profile /> </>}
+        {active === "Manage Notices" && <><CreateNotices/><ManageNotices/></>}
+        {active === "Settings" && <Language/>}
+        {active === "About us" && <AboutUs/>}
       </div>
     </div>
   );

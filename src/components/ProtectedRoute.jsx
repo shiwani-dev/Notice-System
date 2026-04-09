@@ -10,10 +10,10 @@ function ProtectedRoute({ children, allowedRole }) {
 
   if (allowedRole && currentUser.role !== allowedRole) {
     if (currentUser.role === "admin") {
-      return <Navigate to="/admin-dashboard" replace />;
+      return <Navigate to="/dashboard" replace />;
     }
 
-    return <Navigate to="/user-dashboard" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return children;
