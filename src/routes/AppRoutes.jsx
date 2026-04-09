@@ -21,16 +21,9 @@ function AppRoutes() {
           <ProtectedRoute>
             <DashBoard />
           </ProtectedRoute>
-          }
-        />
-
-
-    
-
-    
-
-      </Routes>
-
+        }
+      />
+    </Routes>
   );
 }
 
