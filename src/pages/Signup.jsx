@@ -42,7 +42,7 @@ function Signup() {
     const result = signup(name, email, password);
 
     if (result.success) {
-      navigate("/user-dashboard");
+      navigate("/dashboard");
     } else {
       setMessage(result.message);
     }

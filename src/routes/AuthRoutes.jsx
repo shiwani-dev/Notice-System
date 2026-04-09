@@ -1,3 +1,4 @@
+/*
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
@@ -26,4 +27,4 @@ function AuthRoutes() {
   );
 }
 
-export default AuthRoutes;
+export default AuthRoutes;*/

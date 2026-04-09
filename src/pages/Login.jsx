@@ -36,9 +36,9 @@ function Login() {
 
     if (result.success) {
       if (result.user.role === "admin") {
-        navigate("/admin-dashboard");
+        navigate("/dashboard");
       } else {
-        navigate("/user-dashboard");
+        navigate("/dashboard");
       }
     } else {
       setMessage(result.message);
