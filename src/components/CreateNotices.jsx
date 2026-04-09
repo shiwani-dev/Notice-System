@@ -15,7 +15,17 @@ function CreateNotices() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+      if (!formData.title.trim() || !formData.notice.trim()) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
     addNotice(formData.title, formData.notice);
+     setFormData({
+       title: "",
+       notice: "",
+     });
   };
 
   return (
@@ -30,6 +40,7 @@ function CreateNotices() {
             <label htmlFor="title">Title:</label>
             <br />
             <input
+            id="title"
               name="title"
               className="border rounded-sm shadow-sm p-2 outline-hidden w-full"
               type="text"
@@ -39,9 +50,10 @@ function CreateNotices() {
             />
             <br />
             <br />
-            <label htmlFor="notices">Notice:</label>
+            <label htmlFor="notice">Notice:</label>
             <br />
             <textarea
+            id="notice"
               className="border rounded-sm shadow-sm p-2 w-full outline-hidden"
               rows={6}
               placeholder="write a notice..."

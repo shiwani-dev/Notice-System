@@ -16,7 +16,7 @@ export function NoticeProvider({ children }) {
 
         const updated = [...notices, newNotice];
         setNotices(updated);
-        lopcalStorage.setItem("notices", JSON.stringify(updated));
+        localStorage.setItem("notices", JSON.stringify(updated));
   };
   
   return(<NoticeContext.Provider value={{notices, addNotice}}>
