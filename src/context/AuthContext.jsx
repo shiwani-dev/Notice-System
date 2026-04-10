@@ -32,7 +32,13 @@ export const AuthProvider = ({ children }) => {
   }, [users]);
 
   useEffect(() => {
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    if (currentUser) {
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+      localStorage.setItem("role", currentUser.role);
+    } else {
+      localStorage.removeItem("currentUser");
+      localStorage.removeItem("role");
+    }
   }, [currentUser]);
 
   const signup = (name, email, password) => {
