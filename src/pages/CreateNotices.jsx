@@ -20,6 +20,7 @@ function CreateNotices({
     console.log("notice:", notice);
     if (isEditing && notice) {
       console.log("Setting form data...");
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFormData({
         title: notice.title,
         notice: notice.notice,

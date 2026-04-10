@@ -2,9 +2,9 @@ import { useState } from "react";
 import Profile from "../components/Profile";
 import CreateNotices from "../components/CreateNotices";
 import Language from "../components/Language";
-import Filter from "../components/Filter";
 import ManageNotices from "./ManageNotices";
 import AboutUs from "../components/AboutUs";
+import HomeNotices from "../components/HomeNotices";
 
 function Dashboard() {
   const [active, setActive] = useState("Home");
@@ -33,7 +33,12 @@ function Dashboard() {
       </aside>
 
       <main className="flex-1 p-8 overflow-y-auto">
-        {active === "Home" && <Filter />}
+        {active === "Home" && (
+          <div className="space-y-6">
+            <HomeNotices />
+          </div>
+        )}
+
         {active === "Manage Notices" && (
           <div className="space-y-6">
             {role === "admin" ? (
@@ -46,6 +51,7 @@ function Dashboard() {
             )}
           </div>
         )}
+
         {active === "Settings" && <Language />}
         {active === "About us" && <AboutUs />}
       </main>
