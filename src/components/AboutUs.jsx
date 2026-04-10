@@ -1,9 +1,9 @@
 function AboutUs() {
   return (
-    <div className="p-8 max-w-3xl mx-auto shadow-xl rounded-lg dark:bg-gray-300">
+    <div className="p-8 m-20 max-w-3xl mx-auto shadow-xl bg-green-200 rounded-lg dark:bg-gray-300">
       <h2 className="text-3xl text-green-600 font-bold mb-6 text-center">About Us</h2>
 
-      <div className=" dark:bg-gray-200 shadow rounded-lg p-6 bg-gray-50">
+      <div className=" dark:bg-gray-200 shadow rounded-lg p-6 bg-green-100">
         <p className=" mb-4 leading-relaxed">
           Welcome to our demo dashboard project. This application is built to
           showcase a modern, responsive interface with features like profile

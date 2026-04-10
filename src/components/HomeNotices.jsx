@@ -14,15 +14,19 @@ function HomeNotices() {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Notices</h1>
+      <h1 className="text-5xl dark:text-emerald-600 h-15 text-white bg-green-600 text-center dark:bg-gray-200 p-2 rounded-xl">
+        Notices
+      </h1>
 
-      <input
-        type="text"
-        placeholder="Search notices..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 mb-4 w-full rounded-lg"
-      />
+      <div className="dark:bg-gray-200 bg-gray-50 shadow-xl w-fit p-2 m-6 rounded-xl flex justify-self-center">
+        <input
+          type="text"
+          placeholder="Search notices..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border-2 border-green-600 p-2 w-100 outline-hidden"
+        />
+      </div>
 
       <div className="space-y-4">
         {filteredNotices.length > 0 ? (
