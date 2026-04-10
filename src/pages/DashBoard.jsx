@@ -1,16 +1,38 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Profile from "../components/Profile";
-import CreateNotices from "../components/CreateNotices";
-import Language from "../components/Language";
+import CreateNotices from "./CreateNotices";
 import ManageNotices from "./ManageNotices";
 import AboutUs from "../components/AboutUs";
 import HomeNotices from "../components/HomeNotices";
+import Language from "../components/Language";
+import { LanguageContext } from "../context/LanguageContext";
+import { AuthContext } from "../context/AuthContext";
+import { translations } from "../utils/translations";
 
 function Dashboard() {
-  const [active, setActive] = useState("Home");
-  const role = localStorage.getItem("role");
+  const [active, setActive] = useState("home");
 
-  const menuItems = ["Home", "Manage Notices", "Settings", "About us"];
+  const { language } = useContext(LanguageContext);
+  const { currentUser } = useContext(AuthContext);
+
+  const t = translations[language];
+  const role = currentUser?.role || "user";
+
+  const adminMenuItems = [
+    { key: "home", label: t.home },
+    { key: "create", label: t.createNotice },
+    { key: "manage", label: t.manageNotices },
+    { key: "settings", label: t.settings },
+    { key: "about", label: t.aboutUs },
+  ];
+
+  const userMenuItems = [
+    { key: "home", label: t.home },
+    { key: "settings", label: t.settings },
+    { key: "about", label: t.aboutUs },
+  ];
+
+  const menuItems = role === "admin" ? adminMenuItems : userMenuItems;
 
   return (
     <div className="dark:bg-gray-700 flex h-screen bg-gray-100">
@@ -20,40 +42,41 @@ function Dashboard() {
         <nav className="flex-1 p-4 space-y-2">
           {menuItems.map((item) => (
             <button
-              key={item}
-              onClick={() => setActive(item)}
+              key={item.key}
+              onClick={() => setActive(item.key)}
               className={`w-full text-left px-3 py-2 rounded-lg transition ${
-                active === item ? "bg-gray-700 text-white" : "hover:bg-gray-800"
+                active === item.key
+                  ? "bg-gray-700 text-white"
+                  : "hover:bg-gray-800"
               }`}
             >
-              {item}
+              {item.label}
             </button>
           ))}
         </nav>
       </aside>
 
       <main className="flex-1 p-8 overflow-y-auto">
-        {active === "Home" && (
+        {active === "home" && (
           <div className="space-y-6">
             <HomeNotices />
           </div>
         )}
 
-        {active === "Manage Notices" && (
+        {role === "admin" && active === "create" && (
           <div className="space-y-6">
-            {role === "admin" ? (
-              <>
-                <CreateNotices />
-                <ManageNotices />
-              </>
-            ) : (
-              <ManageNotices />
-            )}
+            <CreateNotices />
           </div>
         )}
 
-        {active === "Settings" && <Language />}
-        {active === "About us" && <AboutUs />}
+        {role === "admin" && active === "manage" && (
+          <div className="space-y-6">
+            <ManageNotices />
+          </div>
+        )}
+
+        {active === "settings" && <Language />}
+        {active === "about" && <AboutUs />}
       </main>
     </div>
   );

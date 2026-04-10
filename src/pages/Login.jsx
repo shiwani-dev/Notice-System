@@ -35,11 +35,7 @@ function Login() {
     const result = login(email, password);
 
     if (result.success) {
-      if (result.user.role === "admin") {
-        navigate("/dashboard");
-      } else {
-        navigate("/dashboard");
-      }
+      navigate("/dashboard");
     } else {
       setMessage(result.message);
     }
