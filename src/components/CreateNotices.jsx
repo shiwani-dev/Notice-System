@@ -1,12 +1,21 @@
 import React from "react";
 import { NoticeContext } from "../context/NoticeContext";
 
-function CreateNotices() {
-  const { addNotice } = React.useContext(NoticeContext);
+function CreateNotices({ isEditing, notice, index, onClose }) {
+  const { addNotice, editNotice } = React.useContext(NoticeContext);
   const [formData, setFormData] = React.useState({
     title: "",
     notice: "",
   });
+
+  React.useEffect(() => {
+    if (isEditing && notice) {
+      setFormData({
+        title: notice.title || "",
+        notice: notice.notice || "",
+      });
+    }
+  }, [isEditing, notice]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,16 +25,22 @@ function CreateNotices() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-      if (!formData.title.trim() || !formData.notice.trim()) {
-        alert("Please fill in both fields.");
-        return;
-      }
+    if (!formData.title.trim() || !formData.notice.trim()) {
+      alert("Please fill in both fields.");
+      return;
+    }
 
-    addNotice(formData.title, formData.notice);
-     setFormData({
-       title: "",
-       notice: "",
-     });
+    if (isEditing) {
+      editNotice(index, formData.title, formData.notice);
+      if (onClose) onClose();
+    } else {
+      addNotice(formData.title, formData.notice);
+    }
+
+    setFormData({
+      title: "",
+      notice: "",
+    });
   };
 
   return (
@@ -63,10 +78,10 @@ function CreateNotices() {
             />
 
             <button
-              className="p-2 w-20 bg-emerald-500 hover:shadow-xl rounded-xl hover:bg-emerald-400 text-white"
+              className="p-2 w-fit bg-emerald-500 hover:shadow-xl rounded-xl hover:bg-emerald-400 text-white"
               type="submit"
             >
-              Post
+              {isEditing ? "Update Notice" : "Post"}
             </button>
           </form>
         </div>

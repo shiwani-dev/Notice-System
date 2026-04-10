@@ -6,6 +6,7 @@ import './index.css';
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { NoticeProvider } from "./context/NoticeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <NoticeProvider>
         <AuthProvider>
           <ThemeProvider>
-            <App />
+            <LanguageProvider>
+              <App />
+            </LanguageProvider>
           </ThemeProvider>
         </AuthProvider>
       </NoticeProvider>

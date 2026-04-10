@@ -3,7 +3,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../components/ProtectedRoute";
 import CreateNotices from "../components/CreateNotices";
-import ManageNotices from "../components/ManageNotices";
+import ManageNotices from "../pages/ManageNotices";
 import DashBoard from "../pages/DashBoard";
 
 function AppRoutes() {
