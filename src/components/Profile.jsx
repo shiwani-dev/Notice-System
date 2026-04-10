@@ -16,25 +16,19 @@ function Profile() {
         onClick={() => setEditMode(!editMode)}
       >
         <img
-          src="src/assets/bunny.png" 
+          src="src/assets/profile.png" 
           alt="User Avatar"
           className="w-14 h-14 rounded-full border-2 border-gray-600"
         />
         <div>
           <h3 className="text-lg font-semibold">Shiwani</h3>
-          <p className="text-sm text-gray-400">shiwanituladhar@example.com</p>
+          <p className="text-sm text-gray-400">shiwani99@gmail.com</p>
         </div>
       </div>
 
       
       {editMode && (
         <div className="mt-4 space-y-3">
-          <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500">
-            Change Password
-          </button>
-          <button className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-500">
-            Edit Image
-          </button>
           <button
             onClick={handleLogout}
             className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-500"

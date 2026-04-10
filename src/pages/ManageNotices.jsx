@@ -3,7 +3,7 @@ import NoticeCard from "../components/NoticeCard";
 import { NoticeContext } from "../context/NoticeContext";
 
 function ManageNotices() {
-  const { notices, deleteNotice, editNotice } = React.useContext(NoticeContext);
+  const { notices, deleteNotice } = React.useContext(NoticeContext);
 
   return (
     <div>
