@@ -44,7 +44,7 @@ function CreateNotices({ isEditing, notice, index, onClose }) {
   };
 
   return (
-    <div className="dark:bg-gray-700">
+    <div className="dark:bg-gray-700 w-cover">
       <div className="flex">
         <img className="w-80 h-80" src="src/assets/bunny.png" alt="bunny" />
         <div className="flex justify-center">

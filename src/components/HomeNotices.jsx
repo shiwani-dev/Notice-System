@@ -1,9 +1,13 @@
 import { useContext, useState } from "react";
 import NoticeCard from "./NoticeCard";
 import { NoticeContext } from "../context/NoticeContext";
+import { LanguageContext } from "../context/LanguageContext";
+import { translations } from "../utils/translations";
 
 function HomeNotices() {
   const { notices } = useContext(NoticeContext);
+  const { language } = useContext(LanguageContext);
+  const t = translations[language];
   const [search, setSearch] = useState("");
 
   const filteredNotices = notices.filter(
@@ -13,34 +17,26 @@ function HomeNotices() {
   );
 
   return (
-    <div className="p-4">
-      <h1 className="text-5xl dark:text-emerald-600 h-15 text-white bg-green-600 text-center dark:bg-gray-200 p-2 rounded-xl">
-        Notices
-      </h1>
+    <div className="p-6">
+      <h1 className="text-xl font-bold mb-4">{t.notices}</h1>
 
-      <div className="dark:bg-gray-200 bg-gray-50 shadow-xl w-fit p-2 m-6 rounded-xl flex justify-self-center">
-        <input
-          type="text"
-          placeholder="Search notices..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="border-2 border-green-600 p-2 w-100 outline-hidden"
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Search notices..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="border p-2 mb-4 w-full rounded-lg"
+      />
 
-      <div className="space-y-4">
-        {filteredNotices.length > 0 ? (
-          filteredNotices.map((notice, index) => (
-            <NoticeCard
-              key={index}
-              index={index}
-              notice={notice}
-              showActions={false}
-            />
-          ))
-        ) : (
-          <p className="text-gray-500">No notices found</p>
-        )}
+      <div>
+        {filteredNotices.map((n, index) => (
+          <NoticeCard
+            key={index}
+            index={index}
+            notice={n}
+            showActions={false}
+          />
+        ))}
       </div>
     </div>
   );

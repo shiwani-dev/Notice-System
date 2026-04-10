@@ -1,18 +1,21 @@
 import React from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { LanguageContext } from "../context/LanguageContext";
+import { translations } from "../utils/translations";
 
-function Settings() {
+function Language() {
   const { theme, setTheme } = React.useContext(ThemeContext);
-  const [language, setLanguage] = React.useState(localStorage.getItem("language") || "en");
+  const { language, setLanguage } = React.useContext(LanguageContext);
+
+  const t = translations[language];
 
   const handleThemeChange = (newTheme) => {
-    setTheme(newTheme); 
+    setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
-    localStorage.setItem("language", e.target.value);
   };
 
   const clearData = () => {
@@ -22,22 +25,24 @@ function Settings() {
 
   return (
     <div className="p-8 max-w-3xl mx-auto dark:bg-gray-200 rounded-xl">
-      <h2 className="text-3xl font-bold mb-8">Settings</h2>
+      <h2 className="text-3xl font-bold mb-8">{t.settings}</h2>
 
-      {/* Theme */}
       <div className="bg-white shadow rounded-lg p-6 mb-6">
-        <h3 className="text-xl font-semibold mb-4">Theme</h3>
+        <h3 className="text-xl font-semibold mb-4">{t.theme}</h3>
         <div className="flex space-x-4">
           <button
             onClick={() => handleThemeChange("light")}
             className={`px-4 py-2 rounded-lg transition ${
               theme === "light"
+               
                 ? "bg-blue-600 text-white"
+               
                 : "bg-gray-200 hover:bg-gray-300"
             }`}
           >
-            Light
+            {t.light}
           </button>
+
           <button
             onClick={() => handleThemeChange("dark")}
             className={`px-4 py-2 rounded-lg transition ${
@@ -46,14 +51,13 @@ function Settings() {
                 : "bg-gray-200 hover:bg-gray-300"
             }`}
           >
-            Dark
+            {t.dark}
           </button>
         </div>
       </div>
 
-      {/* Language */}
-      <div className="bg-white dark:bg-gray-100 shadow rounded-lg p-6 mb-6">
-        <h3 className="text-xl font-semibold mb-4">Language</h3>
+      <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6 mb-6">
+        <h3 className="text-xl font-semibold mb-4">{t.language}</h3>
         <select
           value={language}
           onChange={handleLanguageChange}
@@ -64,18 +68,17 @@ function Settings() {
         </select>
       </div>
 
-      {/* Data */}
       <div className="bg-white dark:bg-gray-100 shadow rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4">Data</h3>
+        <h3 className="text-xl font-semibold mb-4">{t.data}</h3>
         <button
           onClick={clearData}
           className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition"
         >
-          Clear Local Storage
+          {t.clearStorage}
         </button>
       </div>
     </div>
   );
 }
 
-export default Settings;
+export default Language;
