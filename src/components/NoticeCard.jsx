@@ -9,7 +9,7 @@ function NoticeCard({ notice, index, deleteNotice, showActions = false }) {
   const t = translations[language];
 
   return (
-    <div className="dark:bg-gray-200 m-10 p-10 w-full h-fit rounded-xl bg-gray-50 shadow-sm">
+    <div className="dark:bg-gray-200 m-10 p-10 w-fit h-fit rounded-xl bg-gray-50 shadow-sm">
       <span>{notice.title}</span>
       <br />
       <span>{notice.notice}</span>

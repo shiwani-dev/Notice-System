@@ -22,7 +22,7 @@ function Profile() {
   };
 
   return (
-    <div className="border-b border-gray-700 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
+    <div className="border-b border-gray-700 bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
       <div
         className="cursor-pointer rounded-2xl border border-gray-700 bg-white/5 p-4 transition hover:border-gray-500"
         onClick={() => setEditMode(!editMode)}

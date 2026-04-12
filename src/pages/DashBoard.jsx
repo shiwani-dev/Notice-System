@@ -62,7 +62,7 @@ function Dashboard() {
           <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
             Signed in as {role}
           </p>
-          <h1 className="mt-2 text-3xl font-bold text-gray-900">
+          <h1 className="mt-2 text-3xl font-bold dark:text-green-400 text-green-600">
             Welcome back, {firstName}
           </h1>
           <p className="mt-2 text-gray-600">
