@@ -2,10 +2,12 @@ import React from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { LanguageContext } from "../context/LanguageContext";
 import { translations } from "../utils/translations";
+import { useAuth } from "../hooks/useAuth";
 
 function Language() {
   const { theme, setTheme } = React.useContext(ThemeContext);
   const { language, setLanguage } = React.useContext(LanguageContext);
+  const { logout } = useAuth();
 
   const t = translations[language];
 
@@ -19,25 +21,27 @@ function Language() {
   };
 
   const clearData = () => {
-    localStorage.clear();
-    alert("Local storage cleared!");
+    localStorage.removeItem("notices");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+    logout();
+    alert("Session and notices cleared. Saved users are kept.");
   };
 
   return (
-    <div className="p-8 max-w-3xl mx-auto dark:bg-gray-200 rounded-xl">
-      <h2 className="text-3xl font-bold mb-8">{t.settings}</h2>
+    <div className="mx-auto max-w-3xl rounded-2xl bg-gray-50 p-8 text-gray-900 shadow-sm dark:bg-gray-900 dark:text-gray-100">
+      <h2 className="mb-8 text-3xl font-bold">{t.settings}</h2>
 
-      <div className="bg-white shadow rounded-lg p-6 mb-6">
-        <h3 className="text-xl font-semibold mb-4">{t.theme}</h3>
-        <div className="flex space-x-4">
+      <div className="mb-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <h3 className="mb-4 text-xl font-semibold">{t.theme}</h3>
+        <div className="flex flex-wrap gap-4">
           <button
             onClick={() => handleThemeChange("light")}
-            className={`px-4 py-2 rounded-lg transition ${
+            className={`rounded-xl px-5 py-2.5 font-medium transition ${
               theme === "light"
-               
-                ? "bg-blue-600 text-white"
-               
-                : "bg-gray-200 hover:bg-gray-300"
+                ? "bg-emerald-600 text-white shadow-sm"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
             }`}
           >
             {t.light}
@@ -45,10 +49,10 @@ function Language() {
 
           <button
             onClick={() => handleThemeChange("dark")}
-            className={`px-4 py-2 rounded-lg transition ${
+            className={`rounded-xl px-5 py-2.5 font-medium transition ${
               theme === "dark"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
+                ? "bg-emerald-600 text-white shadow-sm"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
             }`}
           >
             {t.dark}
@@ -56,23 +60,26 @@ function Language() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6 mb-6">
-        <h3 className="text-xl font-semibold mb-4">{t.language}</h3>
+      <div className="mb-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <h3 className="mb-2 text-xl font-semibold">{t.language}</h3>
+        <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+          Choose the language used across the dashboard.
+        </p>
         <select
           value={language}
           onChange={handleLanguageChange}
-          className="border rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:focus:border-emerald-400 dark:focus:ring-emerald-900"
         >
           <option value="en">English</option>
           <option value="np">Nepali</option>
         </select>
       </div>
 
-      <div className="bg-white dark:bg-gray-100 shadow rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4">{t.data}</h3>
+      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <h3 className="mb-4 text-xl font-semibold">{t.data}</h3>
         <button
           onClick={clearData}
-          className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition"
+          className="rounded-xl bg-red-600 px-5 py-2.5 font-medium text-white transition hover:bg-red-500"
         >
           {t.clearStorage}
         </button>

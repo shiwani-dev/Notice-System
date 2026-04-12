@@ -17,6 +17,7 @@ function Dashboard() {
 
   const t = translations[language];
   const role = currentUser?.role || "user";
+  const firstName = currentUser?.name?.split(" ").filter(Boolean)[0] || "User";
 
   const adminMenuItems = [
     { key: "home", label: t.home },
@@ -57,6 +58,18 @@ function Dashboard() {
       </aside>
 
       <main className="flex-1 p-8 overflow-y-auto">
+        <div className="mb-6 rounded-2xl bg-white p-5 shadow-sm">
+          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
+            Signed in as {role}
+          </p>
+          <h1 className="mt-2 text-3xl font-bold dark:text-green-400 text-green-600">
+            Welcome back, {firstName}
+          </h1>
+          <p className="mt-2 text-gray-600">
+            {currentUser?.email}
+          </p>
+        </div>
+
         {active === "home" && (
           <div className="space-y-6">
             <HomeNotices />

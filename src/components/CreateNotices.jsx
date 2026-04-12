@@ -55,7 +55,7 @@ function CreateNotices({ isEditing, notice, index, onClose }) {
             <label htmlFor="title">Title:</label>
             <br />
             <input
-            id="title"
+            id="title"z
               name="title"
               className="border rounded-sm shadow-sm p-2 outline-hidden w-full"
               type="text"
