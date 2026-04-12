@@ -27,7 +27,7 @@ function CreateNotices() {
   };
 
   return (
-    <div className="flex dark:bg-gray-700 h-239 p-10">
+    <div className="flex dark:bg-gray-700 h-150 p-20">
       <img className="w-80 h-80" src={bunny} alt="bunny" />
 
       <div className="flex justify-center">
@@ -63,7 +63,7 @@ function CreateNotices() {
             onChange={handleChange}
           />
 
-          <button type="submit">{t.post}</button>
+          <button type="submit" className="mt-4 p-2 w-15 rounded-xl bg-emerald-600 hover:bg-emerald-400 text-white  shadow-sm hover:shadow-xl">{t.post}</button>
         </form>
       </div>
     </div>
