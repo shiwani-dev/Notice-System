@@ -9,27 +9,36 @@ function HomeNotices() {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
   const [search, setSearch] = useState("");
+  const normalizedSearch = search.trim().toLowerCase();
 
-  const filteredNotices = notices.filter(
-    (n) =>
-      n.title.toLowerCase().includes(search.toLowerCase()) ||
-      n.notice.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredNotices = notices.filter((notice) => {
+    const title = notice?.title?.toLowerCase?.() ?? "";
+    const content = notice?.notice?.toLowerCase?.() ?? "";
+
+    return (
+      normalizedSearch === "" ||
+      title.includes(normalizedSearch) ||
+      content.includes(normalizedSearch)
+    );
+  });
 
   return (
-    <div className="p-2bnbmxcjdhn ">
-        
-      <h1 className="text-xl font-bold mb-4">{t.notices}</h1>
+    <div className="rounded-2xl bg-white p-6 shadow-sm dark:bg-gray-800">
+      <div className="mb-5">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          {t.notices}
+        </h1>
+      </div>
 
       <input
         type="text"
         placeholder={t.searchNotices}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 mb-4 w-full"
+        className="mb-4 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-200 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-900"
       />
 
-      <div>
+      <div className="space-y-4">
         {filteredNotices.map((n, index) => (
           <NoticeCard
             key={index}
@@ -38,6 +47,12 @@ function HomeNotices() {
             showActions={false}
           />
         ))}
+
+        {filteredNotices.length === 0 && (
+          <p className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 text-center text-gray-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400">
+            {t.noNotices}
+          </p>
+        )}
       </div>
     </div>
   );
